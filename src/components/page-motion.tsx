@@ -14,6 +14,8 @@ export function PageMotion() {
       ".service-item", ".care-steps article", ".leadership-profile",
       ".audience-list article", ".clinical-note", ".contact-action",
       ".footer-brand > p", ".footer-column", ".footer-note", ".footer-bottom",
+      ".difference-item", ".why-introduction > p", ".director-portrait", ".director-copy > h3", ".director-statement > p",
+      ".director-photo", ".director-summary", ".directors-closing",
     ];
     const reveal = new IntersectionObserver(entries => {
       for (const entry of entries) {
@@ -23,7 +25,7 @@ export function PageMotion() {
         if (preference.matches) continue;
         const target = entry.target as HTMLElement;
         const siblings = target.parentElement ? Array.from(target.parentElement.children) : [];
-        const stagger = target.matches(".service-item, .care-steps article, .audience-list article, .footer-column");
+        const stagger = target.matches(".service-item, .care-steps article, .audience-list article, .footer-column, .difference-item");
         const delay = stagger ? (siblings.indexOf(target) % 3) * 80 : target.matches("p") ? 80 : 0;
         const photo = target.matches(".about-figure");
         const animation = target.animate([
