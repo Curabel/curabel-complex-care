@@ -7,6 +7,17 @@ test("client sections preserve full content and fit requested viewport sizes", a
     await page.setViewportSize({ width, height: 1000 });
     await page.goto("/", { waitUntil: "networkidle" });
     await expect(page.locator("#leadership")).toHaveCount(1);
+    await expect(page.locator(".hero-description")).toHaveText("Personalised complex care for children and young people, combining clinical expertise with compassionate support and comfort in their own home.");
+    for (const email of ["caroline.mcknight@curabelcomplexcare.co.uk", "joel.alter@curabelcomplexcare.co.uk", "enquiries@curabelcomplexcare.co.uk"]) {
+      await expect(page.getByRole("link", { name: email, exact: true })).toHaveAttribute("href", `mailto:${email}`);
+    }
+    await expect(page.locator(".footer-phone + .footer-email")).toHaveText("enquiries@curabelcomplexcare.co.uk");
+    if (width === 1440) {
+      expect(await page.locator(".hero-figure figcaption span").first().evaluate(el => {
+        const range = document.createRange(); range.selectNodeContents(el);
+        return range.getClientRects().length;
+      })).toBe(1);
+    }
     await expect(page.locator(".director-profile").first().locator(".director-statement p")).toHaveText(directorStatement);
     await expect(page.locator(".director-profile").last().locator(".director-statement p")).toHaveText(joelBiography);
     for (const [name, url] of [["Caroline McKnight", "https://www.linkedin.com/in/caroline-mcknight-31a1abb1/"], ["Joel Alter", "https://www.linkedin.com/in/joel-alter-46a8486a/"]]) {

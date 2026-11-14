@@ -23,8 +23,8 @@ export function WhyCurabel() {
 
 export function ClinicalDirector() {
   const directors = [
-    { name: "Caroline McKnight" as const, title: "Registered Children's Nurse | Clinical Director", image: "/images/caroline.png", summary: "Caroline brings 28 years of paediatric nursing experience across the NHS, independent healthcare and social care. Her approach centres on strong clinical governance, safeguarding and the voice of every child.", paragraphs: directorStatement },
-    { name: "Joel Alter" as const, title: "Director of Operations", image: "/images/joel-alter.png", summary: "Joel brings extensive experience in recruitment, workforce management and business operations. At Curabel, he oversees business strategy, operational development, recruitment and commercial growth.", paragraphs: joelBiography },
+    { name: "Caroline McKnight" as const, email: "caroline.mcknight@curabelcomplexcare.co.uk", title: "Registered Children's Nurse | Clinical Director", image: "/images/caroline.png", summary: "Caroline brings 28 years of paediatric nursing experience across the NHS, independent healthcare and social care. Her approach centres on strong clinical governance, safeguarding and the voice of every child.", paragraphs: directorStatement },
+    { name: "Joel Alter" as const, email: "joel.alter@curabelcomplexcare.co.uk", title: "Director of Operations", image: "/images/joel-alter.png", summary: "Joel brings extensive experience in recruitment, workforce management and business operations. At Curabel, he oversees business strategy, operational development, recruitment and commercial growth.", paragraphs: joelBiography },
   ];
   return <section id="leadership" className="section container director-section" aria-labelledby="leadership-title">
     <p className="eyebrow section-label">04 / CLINICAL LEADERSHIP</p>
@@ -40,6 +40,7 @@ export function ClinicalDirector() {
         <div className="director-copy">
           <div className="director-name-row"><h3>{director.name}</h3><DirectorLink name={director.name} /></div>
           <p className="director-title">{director.title}</p>
+          <a className="director-email" href={`mailto:${director.email}`}>{director.email}</a>
           <p className="director-summary">{director.summary}</p>
           <details className="director-full-profile">
             <summary aria-label={`Read full profile of ${director.name}`}>Read full profile</summary>
