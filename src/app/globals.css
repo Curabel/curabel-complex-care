@@ -186,6 +186,10 @@ h1 { font-size: clamp(52px, 5.2vw, 75px); line-height: 1.025; letter-spacing: -.
 .footer-policy { border: 0; background: none; padding: 4px 0; font-size: 9px; }
 .footer-bottom > span { font-size: 7px; color: #506b86; letter-spacing: .1em; }
 .stock-disclosure { color: #506b86; font-size: 8px; padding-block: 14px 21px; line-height: 1.7; }
+.footer-design-credit { margin: 0; padding-bottom: 22px; color: #dce8f4; font-size: 12px; line-height: 1.8; text-align: right; }
+.footer-design-credit a { text-underline-offset: 4px; transition: color 230ms; }
+.footer-design-credit a:is(:hover, :focus-visible) { color: #b7ddff; text-decoration: underline; }
+@media (max-width: 700px) { .footer-design-credit { text-align: left; } }
 
 .enquiry-dialog { position: fixed; inset: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); margin: auto; border: 1px solid var(--line); border-radius: 5px; width: min(650px, calc(100% - 32px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); max-height: min(88dvh, calc(100dvh - 32px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px))); overflow-y: auto; overscroll-behavior: contain; padding: 0; background: var(--background); color: var(--ink); }
 .enquiry-dialog.privacy-dialog { width: min(860px, calc(100% - 32px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); }
