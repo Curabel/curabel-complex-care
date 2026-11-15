@@ -37,7 +37,7 @@ test("desktop homepage, images, service details and enquiry preview", async ({ p
   await expect(dialog.getByLabel("Enquiry type")).toHaveValue("Professional referral");
   await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "Privacy policy", exact: true }).click();
-  await expect(dialog).toContainText("draft privacy notice");
+  await expect(dialog.getByRole("heading", { name: "Privacy Policy", exact: true })).toBeVisible();
   await page.keyboard.press("Escape");
   expect(errors).toEqual([]);
 });
@@ -80,5 +80,6 @@ test("automated homepage and enquiry accessibility checks", async ({ page }) => 
   const scan = () => new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   expect((await scan()).violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => ({ target: n.target, issue: n.failureSummary })) }))).toEqual([]);
   await page.getByRole("button", { name: "Make an enquiry", exact: true }).first().click();
+  await expect.poll(() => page.locator(".enquiry-dialog").evaluate(el => getComputedStyle(el).transform)).toBe("none");
   expect((await scan()).violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => ({ target: n.target, issue: n.failureSummary })) }))).toEqual([]);
 });
