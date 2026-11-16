@@ -1,6 +1,6 @@
 # Privacy policy — internal developer checklist
 
-Updated 15 November 2026. Non-production branch and Vercel preview deployment authorised. Production publication remains pending Caroline and Joel’s approval. Do not merge into main or deploy to production without explicit approval.
+Updated 16 November 2026. Non-production branch and Vercel preview deployment authorised. Production publication remains pending Caroline and Joel’s approval. Do not merge into main or deploy to production without explicit approval.
 
 ## Current implementation
 
@@ -10,14 +10,14 @@ Updated 15 November 2026. Non-production branch and Vercel preview deployment au
 - Proposed retention remains 12 months, described as planned rather than implemented.
 - Vercel Web Analytics is planned, not installed or active. No analytics integration was added.
 - Policy describes the actual browser-only form. Resend is not configured and no email-delivery claim remains.
-- Unverified ICO number and international safeguard claims omitted from visitor copy.
+- Client supplied ICO registration number C2052625 on 16 November 2026; included in Section 1. International safeguard claims remain omitted.
 - The original client text remains archived in privacy-policy-client-draft.md for provenance; it is not the current rendered policy.
 - Form fields, London footer address and unrelated website sections are unchanged.
 
 ## Publication gates
 
 - [ ] Caroline and Joel approve the revised policy and the proposed privacy email and telephone.
-- [ ] Verify ICO registration and any registration number before adding it. No number has been invented.
+- [x] Record client-supplied ICO registration number C2052625 in Section 1. This records receipt from the client, not independent register verification; no other pending confirmations are approved.
 - [ ] Verify company number 17500743 and the supplied Birmingham registered office against official records.
 - [ ] Approve and implement the proposed 12-month retention schedule, including email enquiries; confirm current mailbox retention and processor log retention. Do not present the proposed period as operational until confirmed.
 - [ ] Confirm hosting processing locations, account-specific terms and applicable international transfer safeguards. No claim that a particular safeguard is in force appears in the current copy.

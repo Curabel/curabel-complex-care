@@ -3,7 +3,7 @@ export function PrivacyPolicy() {
     <h3>{"1. Who we are"}</h3>
     <p>{"This website, curabelcomplexcare.co.uk, is run by Curabel Complex Care Group Ltd (“Curabel”, “we”, “us”, “our”), a company registered in England and Wales under company number 17500743."}</p>
     <p>{"Registered office: 24-26 Regent Street, Office 1, Izabella House, Birmingham, B1 3NJ, United Kingdom."}</p>
-    <p>{"We are the data controller for personal information collected through this website."}</p>
+    <p>{"We are the data controller for personal information collected through this website. Our ICO registration number is C2052625."}</p>
     <p>{"Contact for data protection queries: "}<a href="mailto:enquiries@curabelcomplexcare.co.uk">enquiries@curabelcomplexcare.co.uk</a>{""}</p>
     <h3>{"2. About this policy"}</h3>
     <p>{"This policy explains how we collect and use personal information when you visit this website or contact us through it. It covers the website only. It does not cover personal information we handle when providing care services. That is explained separately to families, referrers and staff."}</p>
