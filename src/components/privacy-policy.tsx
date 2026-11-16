@@ -10,18 +10,18 @@ export function PrivacyPolicy() {
     <h3>{"3. Information we collect"}</h3>
     <p>{""}<strong>{"Information you give us."}</strong>{" When you email us, we receive the information you choose to include, which may include:"}</p>
     <ul><li>{"Your name"}</li><li>{"Your organisation (if any)"}</li><li>{"Your email address"}</li><li>{"Your phone number"}</li><li>{"The contents of your message"}</li></ul>
-    <p>The website enquiry form currently checks information in your browser only. It does not send your enquiry to us or save it on a server.</p>
+    <p>When online enquiries are enabled, the website sends the information you enter to our enquiries inbox using Resend. If the service is unavailable, the form displays an error and provides an alternative contact route.</p>
     <p>{""}<strong>{"Information collected automatically."}</strong>{" When you visit the site, our hosting provider may record basic technical information such as your IP address, browser type, device type, pages visited and the date and time of your visit. We use this to keep the website secure and working properly."}</p>
     <p>{""}<strong>{"Please do not send health information."}</strong>{" Please do not put personal health information about a child or any other person in the enquiry form. If we need it, we will ask for it through a secure route once we are in contact."}</p>
     <h3>{"4. How and why we use your information"}</h3>
     <table><caption className="sr-only">How and why we use your information</caption><thead><tr><th scope="col">{"What we do"}</th><th scope="col">{"Why"}</th><th scope="col">{"Legal basis"}</th></tr></thead><tbody><tr><td>{"Reply to your enquiry and keep a record of it"}</td><td>{"To respond to referral partners, families and others who contact us"}</td><td>{"Legitimate interests (running our business and answering enquiries)"}</td></tr><tr><td>{"Keep the website secure and working"}</td><td>{"To protect the site and fix technical problems"}</td><td>{"Legitimate interests"}</td></tr><tr><td>{"Meet legal obligations"}</td><td>{"For example, responding to a request from a regulator"}</td><td>{"Legal obligation"}</td></tr></tbody></table>
     <p>{"We do not use your information for marketing emails unless you ask us to. We do not sell your personal information. We do not use it for automated decision-making or profiling."}</p>
     <h3>{"5. Who we share your information with"}</h3>
-    <p>Vercel Inc. provides website hosting. The current enquiry form does not send messages to an email delivery provider. We may also share information where the law requires it, for example with a regulator or law enforcement.</p>
+    <p>Vercel Inc. provides website hosting. Resend provides email delivery for online enquiries when the submission service is enabled. We may also share information where the law requires it, for example with a regulator or law enforcement.</p>
     <h3>{"6. Transfers outside the UK"}</h3>
-    <p>Our hosting provider, Vercel, may process technical information in countries outside the UK, such as the United States.</p>
+    <p>Our hosting and email delivery providers, Vercel and Resend, may process personal information in countries outside the UK, such as the United States.</p>
     <h3>{"7. How long we keep your information"}</h3>
-    <p>Our planned retention period for enquiry messages is 12 months after our last contact with you. The website enquiry form does not currently send or store messages. Technical logs are managed by our hosting provider under its terms. We may keep information for longer where the law requires it.</p>
+    <p>Our planned retention period for enquiry messages is 12 months after our last contact with you. Submitted enquiries are processed for email delivery and received in our enquiries inbox. The website does not maintain a separate enquiry database. Technical logs are managed by our hosting provider under its terms. We may keep information for longer where the law requires it.</p>
     <h3>{"8. Cookies"}</h3>
     <p>The current website does not use analytics, advertising or tracking cookies. We plan to use Vercel Web Analytics, but it has not yet been implemented or activated on this website. We will update this policy to describe the data collected and how it is used before enabling analytics, and ask for consent where required.</p>
     <h3>{"9. Your rights"}</h3>

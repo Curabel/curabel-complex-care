@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { ArrowUpRight, Check, X } from "lucide-react";
 import { PrivacyPolicy } from "./privacy-policy";
 
@@ -22,12 +22,34 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLElement | null>(null);
   const [panel, setPanel] = useState<Panel>("Family enquiry");
-  const [checked, setChecked] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
+  const pending = useRef(false);
+  const submission = useRef<{ payload: string; id: string } | null>(null);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (pending.current) return;
+    const form = event.currentTarget;
+    const values = new FormData(form);
+    const payload = Object.fromEntries(values);
+    const serialized = JSON.stringify(payload);
+    if (submission.current?.payload !== serialized) submission.current = { payload: serialized, id: crypto.randomUUID() };
+    pending.current = true; setStatus("sending"); setError("");
+    try {
+      const response = await fetch("/api/enquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...payload, consent: values.get("consent") === "on", submissionId: submission.current!.id }) });
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error(result.error || "Unable to send your enquiry. Please try again.");
+      setStatus("sent"); form.reset(); submission.current = null;
+    } catch (reason) { setStatus("error"); setError(reason instanceof Error ? reason.message : "Unable to send your enquiry. Please try again."); }
+    finally { pending.current = false; }
+  }
 
   function open(next: Panel) {
     trigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    if (pending.current) return;
     setPanel(next);
-    setChecked(false);
+    setStatus("idle");
     dialog.current?.showModal();
     if (dialog.current) dialog.current.scrollTop = 0;
   }
@@ -72,14 +94,18 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
         </div> : <>
           <p className="dialog-intro">{panel === "Careers enquiry" ? "Interested in supporting children and families as a Healthcare Assistant or Registered Nurse? Introduce yourself below." : "Tell us a little about what you’re looking for. Please keep patient names, diagnoses and other medical details out of this form."}</p>
           <p className="dialog-intro">Please do not include sensitive patient or child health information in this general enquiry form.</p>
-          <div className="preview-notice"><span className="status-dot" />Homepage preview · enquiries are not being sent yet.</div>
-          <form key={panel} onSubmit={(e) => { e.preventDefault(); setChecked(true); }} onChange={() => setChecked(false)}>
+
+          <form key={panel} onSubmit={submit} aria-busy={status === "sending"} onChange={() => { if (!pending.current) setStatus("idle"); }}>
+            <fieldset disabled={status === "sending"} style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
+            <div hidden aria-hidden="true"><label>Leave empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
             <div className="form-grid"><label>Full name *<input name="name" autoComplete="name" required maxLength={100} /></label><label>Email address *<input name="email" type="email" autoComplete="email" required maxLength={254} /></label></div>
             <div className="form-grid"><label>Telephone (optional)<input name="telephone" type="tel" autoComplete="tel" maxLength={30} /></label><label>Enquiry type<select name="type" defaultValue={panel}><option>Family enquiry</option><option>Professional referral</option><option>Careers enquiry</option></select></label></div>
             <label>Your message *<textarea name="message" rows={3} required minLength={10} maxLength={2000} placeholder="A brief introduction, without personal medical details." /></label>
-            <label className="consent"><input name="consent" type="checkbox" required /><span>I understand this is a preview, my enquiry will not be sent, and I have not included patient health information.</span></label>
-            <button className="button button-primary" type="submit">Check enquiry details <ArrowUpRight size={17} aria-hidden="true" /></button>
-            <p className="form-result" role="status">{checked && <><Check size={18} aria-hidden="true" />Details checked in your browser. Nothing has been sent or saved. The enquiry service will be connected before launch.</>}</p>
+            <label className="consent"><input name="consent" type="checkbox" required /><span>I have read the Privacy Policy and agree to be contacted about my enquiry. I have not included patient or child health information.</span></label>
+            <button className="button button-primary" type="submit">{status === "sending" ? "Sending…" : "Submit details"} <ArrowUpRight size={17} aria-hidden="true" /></button>
+            </fieldset>
+            <p className="form-result" role="status">{status === "sent" && <><Check size={18} aria-hidden="true" />Thank you. Your enquiry has been submitted. Our team will be in touch.</>}</p>
+            {status === "error" && <p className="form-result" role="alert">{error}</p>}
           </form>
         </>}
       </div>

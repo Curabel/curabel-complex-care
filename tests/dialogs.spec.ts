@@ -4,7 +4,8 @@ import AxeBuilder from "@axe-core/playwright";
 for (const width of [375, 430, 768, 1024, 1440]) {
   test(`privacy and enquiry dialogs at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });
-    await page.goto("/", { waitUntil: "networkidle" });
+    await page.route("**/api/enquiry", route => route.fulfill({ json: { success: true } }));
+  await page.goto("/", { waitUntil: "networkidle" });
     for (const name of ["Privacy policy", "Discuss a referral"]) {
       const trigger = page.getByRole("button", { name, exact: true });
       await trigger.click();
@@ -32,8 +33,8 @@ for (const width of [375, 430, 768, 1024, 1440]) {
         await dialog.getByLabel("Email address").fill("preview@example.com");
         await dialog.getByLabel("Your message").fill("Please tell me about the care service.");
         await dialog.getByRole("checkbox").check();
-        await dialog.getByRole("button", { name: "Check enquiry details" }).click();
-        await expect(dialog.getByRole("status")).toContainText("Nothing has been sent or saved");
+        await dialog.getByRole("button", { name: "Submit details" }).click();
+        await expect(dialog.getByRole("status")).toContainText("Your enquiry has been submitted");
       } else {
         await expect(dialog.getByRole("heading", { name: "Privacy Policy", exact: true })).toBeVisible();
         await expect(dialog.locator(".privacy-policy h3")).toHaveCount(14);
@@ -82,10 +83,10 @@ test("policy disclosures, contact links and privacy accessibility", async ({ pag
   await expect(dialog).not.toContainText("DRAFT");
   await expect(dialog.locator(".policy-draft-note")).toHaveCount(0);
   await expect(policy).not.toContainText("[");
-  await expect(policy).not.toContainText("Resend");
+  await expect(policy).toContainText("Resend");
   await expect(policy).toContainText("has not yet been implemented or activated");
   await expect(policy).toContainText("planned retention period for enquiry messages is 12 months");
-  await expect(policy).toContainText("does not send your enquiry to us or save it on a server");
+  await expect(policy).toContainText("using Resend");
   await expect(policy.locator('a[href="mailto:enquiries@curabelcomplexcare.co.uk"]')).toHaveCount(3);
   await expect(policy.getByRole("link", { name: "0333 880 5696" })).toHaveAttribute("href", "tel:+443338805696");
   await expect(policy.getByRole("link", { name: "ICO website (opens in a new tab)" })).toHaveAttribute("href", "https://ico.org.uk/");

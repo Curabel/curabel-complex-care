@@ -5,6 +5,7 @@ test("desktop homepage, images, service details and enquiry preview", async ({ p
   await page.setViewportSize({ width: 1440, height: 1000 });
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
+  await page.route("**/api/enquiry", route => route.fulfill({ json: { success: true } }));
   await page.goto("/", { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Specialist care.");
@@ -29,8 +30,8 @@ test("desktop homepage, images, service details and enquiry preview", async ({ p
   await dialog.getByLabel("Email address").fill("preview@example.com");
   await dialog.getByLabel("Your message").fill("I would like to learn about your care model.");
   await dialog.getByRole("checkbox").check();
-  await dialog.getByRole("button", { name: "Check enquiry details" }).click();
-  await expect(dialog.getByRole("status")).toContainText("Nothing has been sent or saved");
+  await dialog.getByRole("button", { name: "Submit details" }).click();
+  await expect(dialog.getByRole("status")).toContainText("Your enquiry has been submitted");
   await page.keyboard.press("Escape");
   await expect(dialog).not.toBeVisible();
   await page.getByRole("button", { name: "Discuss a referral", exact: true }).click();
@@ -45,7 +46,8 @@ test("desktop homepage, images, service details and enquiry preview", async ({ p
 test("responsive layouts and mobile navigation remain usable", async ({ page }) => {
   for (const width of [320, 390, 768, 1024]) {
     await page.setViewportSize({ width, height: 844 });
-    await page.goto("/", { waitUntil: "networkidle" });
+    await page.route("**/api/enquiry", route => route.fulfill({ json: { success: true } }));
+  await page.goto("/", { waitUntil: "networkidle" });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await page.getByRole("button", { name: "Open navigation", exact: true }).click();
@@ -76,6 +78,7 @@ test("skip link and reduced motion preference", async ({ page }) => {
 });
 
 test("automated homepage and enquiry accessibility checks", async ({ page }) => {
+  await page.route("**/api/enquiry", route => route.fulfill({ json: { success: true } }));
   await page.goto("/", { waitUntil: "networkidle" });
   const scan = () => new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   expect((await scan()).violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => ({ target: n.target, issue: n.failureSummary })) }))).toEqual([]);

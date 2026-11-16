@@ -9,7 +9,7 @@ Updated 16 November 2026. Non-production branch and Vercel preview deployment au
 - Proposed privacy contact: enquiries@curabelcomplexcare.co.uk; telephone 0333 880 5696. Both are clickable. Client approval of their designated privacy role remains pending.
 - Proposed retention remains 12 months, described as planned rather than implemented.
 - Vercel Web Analytics is planned, not installed or active. No analytics integration was added.
-- Policy describes the actual browser-only form. Resend is not configured and no email-delivery claim remains.
+- Resend server integration is implemented locally and disabled unless ENQUIRIES_ENABLED=true with valid server credentials and a verified sender. Live delivery is not tested; see ENQUIRY-EMAIL-SETUP.md. Policy describes enabled submissions conditionally.
 - Client supplied ICO registration number C2052625 on 16 November 2026; included in Section 1. International safeguard claims remain omitted.
 - The original client text remains archived in privacy-policy-client-draft.md for provenance; it is not the current rendered policy.
 - Form fields, London footer address and unrelated website sections are unchanged.
@@ -23,7 +23,7 @@ Updated 16 November 2026. Non-production branch and Vercel preview deployment au
 - [ ] Confirm hosting processing locations, account-specific terms and applicable international transfer safeguards. No claim that a particular safeguard is in force appears in the current copy.
 - [ ] Recheck cookie and tracking behaviour before publication. Previous source and browser checks found no analytics integration, cookies or browser storage during the tested visit; provider-side logging was not independently verified.
 - [ ] Before enabling Vercel Web Analytics, review its actual configuration, data collection, retention and disclosure requirements, update the policy, obtain approval and test the deployed behaviour.
-- [ ] Before enabling form delivery, separately authorise and implement the backend, verify delivery, update provider and processing disclosures, and test retention/error handling. No Resend service currently exists. The form has no Organisation field.
+- [ ] Before enabling form delivery, separately authorise and implement the backend, verify delivery, update provider and processing disclosures, and test retention/error handling. Resend integration exists locally but credentials, verified sender and real delivery testing remain outstanding. The form has no Organisation field.
 - [ ] Obtain final client or qualified data protection review, then explicit deployment approval.
 
 ## Git and deployment
