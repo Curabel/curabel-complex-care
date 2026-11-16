@@ -567,7 +567,7 @@ input:focus,textarea:focus,select:focus { border-color: #07509f; background: whi
 }
 
 /* Fine typography and footer alignment refinements. */
-main .eyebrow.section-label { font-size: 10px; font-weight: 600; }
+main .eyebrow.section-label { font-size: 12px; font-weight: 600; }
 .services-bottom .text-link { font-size: clamp(18px, 1.8vw, 24px); font-weight: 600; line-height: 1.5; gap: 12px; flex-shrink: 0; }
 .services-bottom .text-link svg { width: 1em; height: 1em; flex-shrink: 0; }
 .hero-footnote { font-size: clamp(18px, 1.5vw, 23px); font-weight: 600; }
@@ -599,18 +599,18 @@ main .eyebrow.section-label { font-size: 10px; font-weight: 600; }
 /* Align supporting summaries with their section headings. */
 .directors-heading { align-items: center; }
 .directors-heading > p { flex: 0 1 560px; max-width: 560px; line-height: 1.6; }
-#services .section-heading > p { max-width: 560px; line-height: 1.6; padding-bottom: 0; }
+:is(#services, #approach) .section-heading > p { max-width: 560px; line-height: 1.6; padding-bottom: 0; }
 .footer-contact .footer-note { display: flex; }
 .footer-contact .footer-note p { font-size: clamp(16px, 1.4vw, 18px); font-weight: 600; line-height: 1.5; letter-spacing: .04em; }
 @media (min-width: 701px) {
-  #services .section-heading { align-items: center; }
-  #services .section-heading > p { flex: 0 1 560px; margin-top: 41px; }
+  :is(#services, #approach) .section-heading { align-items: center; }
+  :is(#services, #approach) .section-heading > p { flex: 0 1 560px; margin-top: 44.2px; }
 }
 @media (max-width: 1099px) and (min-width: 701px) {
-  .directors-heading > p, #services .section-heading > p { flex-basis: 48%; }
+  .directors-heading > p, :is(#services, #approach) .section-heading > p { flex-basis: 48%; }
 }
 @media (max-width: 700px) {
-  .directors-heading > p, #services .section-heading > p { max-width: 100%; }
+  .directors-heading > p, :is(#services, #approach) .section-heading > p { max-width: 100%; }
 }
 
 @media (min-width: 701px) {
@@ -618,3 +618,5 @@ main .eyebrow.section-label { font-size: 10px; font-weight: 600; }
   .director-profile { display: grid; grid-template-rows: subgrid; grid-row: span 6; row-gap: 0; }
   .director-profile .director-copy { display: grid; grid-template-rows: subgrid; grid-row: span 5; row-gap: 0; }
 }
+
+#approach .section-heading > p { line-height: 1.85; }
