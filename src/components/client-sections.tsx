@@ -23,7 +23,7 @@ export function WhyCurabel() {
 
 export function ClinicalDirector() {
   const directors = [
-    { name: "Caroline McKnight" as const, email: "caroline.mcknight@curabelcomplexcare.co.uk", title: "Registered Children's Nurse | Clinical Director", image: "/images/caroline.png", summary: "Caroline brings 28 years of paediatric nursing experience across the NHS, independent healthcare and social care. Her approach centres on strong clinical governance, safeguarding and the voice of every child.", paragraphs: directorStatement },
+    { name: "Caroline McKnight" as const, email: "caroline.mcknight@curabelcomplexcare.co.uk", title: "Registered Children's Nurse | Clinical Director", image: "/images/caroline-grey.png", summary: "Caroline brings 28 years of paediatric nursing experience across the NHS, independent healthcare and social care. Her approach centres on strong clinical governance, safeguarding and the voice of every child.", paragraphs: directorStatement },
     { name: "Joel Alter" as const, email: "joel.alter@curabelcomplexcare.co.uk", title: "Director of Operations", image: "/images/joel-alter.png", summary: "Joel brings extensive experience in recruitment, workforce management and business operations. At Curabel, he oversees business strategy, operational development, recruitment and commercial growth.", paragraphs: joelBiography },
   ];
   return <section id="leadership" className="section container director-section" aria-labelledby="leadership-title">
@@ -34,7 +34,7 @@ export function ClinicalDirector() {
     </div>
     <div className="directors-grid">
       {directors.map(director => <article className="director-profile" key={director.name}>
-        <div className="director-photo">
+        <div className={`director-photo${director.name === "Caroline McKnight" ? " director-photo-caroline" : ""}`}>
           <Image src={director.image} alt={director.name} fill sizes="(max-width: 700px) 88vw, (max-width: 1099px) 40vw, 360px" />
         </div>
         <div className="director-copy">
