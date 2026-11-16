@@ -595,3 +595,20 @@ main .eyebrow.section-label { font-size: 10px; font-weight: 600; }
   .footer-email { white-space: normal; overflow-wrap: anywhere; }
 }
 .directors-closing p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.6; }
+
+/* Align supporting summaries with their section headings. */
+.directors-heading { align-items: center; }
+.directors-heading > p { flex: 0 1 560px; max-width: 560px; line-height: 1.6; }
+#services .section-heading > p { max-width: 560px; line-height: 1.6; padding-bottom: 0; }
+.footer-contact .footer-note { display: flex; }
+.footer-contact .footer-note p { font-size: clamp(16px, 1.4vw, 18px); font-weight: 600; line-height: 1.5; letter-spacing: .04em; }
+@media (min-width: 701px) {
+  #services .section-heading { align-items: center; }
+  #services .section-heading > p { flex: 0 1 560px; margin-top: 41px; }
+}
+@media (max-width: 1099px) and (min-width: 701px) {
+  .directors-heading > p, #services .section-heading > p { flex-basis: 48%; }
+}
+@media (max-width: 700px) {
+  .directors-heading > p, #services .section-heading > p { max-width: 100%; }
+}
