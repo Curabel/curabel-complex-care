@@ -544,3 +544,24 @@ input:focus,textarea:focus,select:focus { border-color: #07509f; background: whi
 @media(prefers-reduced-motion:reduce) {
   .service-item:hover,.service-item:focus-within,.button svg,.text-link svg { transform: none !important; }
 }
+
+/* Emphasis for the approved care messages. */
+.hero-footnote { font-size: clamp(24px, 2.4vw, 34px); font-weight: 600; line-height: 1.35; align-items: flex-start; }
+.hero-footnote .fine-line { flex-shrink: 0; margin-top: .65em; }
+.about-figure figcaption { font-size: clamp(18px, 1.8vw, 24px); font-weight: 700; line-height: 1.4; letter-spacing: .06em; }
+.about-figure figcaption::before { top: .7em; }
+.services-bottom p { font-size: clamp(18px, 1.8vw, 24px); font-weight: 600; line-height: 1.5; }
+.contact-section .eyebrow { font-size: clamp(18px, 1.8vw, 24px); font-weight: 700; line-height: 1.5; letter-spacing: .06em; max-width: 34ch; }
+.contact-action p { font-size: clamp(20px, 1.8vw, 26px); font-weight: 600; line-height: 1.45; }
+.contact-action { min-width: 0; }
+.clinical-note { gap: clamp(16px, 2vw, 26px); padding-top: 30px; align-items: center; }
+.clinical-note > svg { width: clamp(32px, 3vw, 42px); height: clamp(32px, 3vw, 42px); flex-shrink: 0; margin-top: 0; }
+.clinical-note p { min-width: 0; font-size: clamp(18px, 1.8vw, 24px); font-weight: 600; line-height: 1.5; }
+.clinical-note p span { display: inline-block; margin-top: 8px; font-size: clamp(16px, 1.4vw, 19px); font-weight: 500; line-height: 1.6; }
+.clinical-note a { flex-shrink: 0; }
+.footer-bottom > p, .footer-bottom .footer-policy { font-size: 13px; font-weight: 400; line-height: 1.6; }
+@media (max-width: 700px) {
+  .clinical-note { align-items: flex-start; gap: 14px; }
+  .clinical-note > svg { margin-top: 3px; }
+  .contact-action p { max-width: calc(100% - 80px); }
+}
