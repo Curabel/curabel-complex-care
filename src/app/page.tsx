@@ -7,6 +7,10 @@ import { Footer } from "@/components/footer";
 import { EnquiryButton } from "@/components/enquiry-provider";
 import { services, careSteps } from "@/lib/content";
 
+export const metadata = {
+  alternates: { canonical: "https://www.curabelcomplexcare.co.uk/" },
+};
+
 export default function Home() {
   return <>
     <Header />
